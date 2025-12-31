@@ -8522,7 +8522,7 @@ components:
       type: string
       format: password
       minLength: 6
-      maxLength: 255
+      maxLength: 50
 
     VideoCategorySet:
       type: integer

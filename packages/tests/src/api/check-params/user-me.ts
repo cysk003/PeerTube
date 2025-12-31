@@ -113,12 +113,23 @@ describe('Test my user API validators', function () {
     })
 
     it('Should fail with a too long password', async function () {
-      const fields = {
-        currentPassword: 'password',
-        password: 'super'.repeat(61)
+      {
+        const fields = {
+          currentPassword: 'password',
+          password: 'super'.repeat(61)
+        }
+
+        await makePutBodyRequest({ url: server.url, path: path + 'me', token: userToken, fields })
       }
 
-      await makePutBodyRequest({ url: server.url, path: path + 'me', token: userToken, fields })
+      {
+        const fields = {
+          currentPassword: 'password',
+          password: '😁'.repeat(20)
+        }
+
+        await makePutBodyRequest({ url: server.url, path: path + 'me', token: userToken, fields })
+      }
     })
 
     it('Should fail without the current password', async function () {
